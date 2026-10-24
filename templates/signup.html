@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awwiechat - Signup</title>
+</head>
+<body>
+
+    <!---signup page-->
+
+    <img src="#" alt = "logo">
+    <h1> Awwiechat - Signup</h1>
+
+    <!---Form-->
+
+    <form method ="POST" action="{{url_for('signup')}}">
+        <input type = "text" id = "sgpu" name = "SignupAwwieU" placeholder="Your username here" required>
+        <input type = "password" id = "sgpp" name = "SignupAwwieP" placeholder="Your password here"required>
+
+        <input type="submit" value = "SignUp">
+
+        <h3> Already a user ?? <a href = "{{url_for('login')}}">Signup</a></h3>
+
+        <!--Flashed message to show on frontend-->
+
+        {% with message = get flashed message() %}
+        {% for message in messages%}
+
+        <p> {{ message }}</p>
+
+        {% endfor %}
+        {% endwith %}
+    </form>
+</body>
+</html>
