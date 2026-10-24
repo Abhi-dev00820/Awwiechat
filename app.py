@@ -31,7 +31,13 @@ with app.app_context():
 
 #Routes
 
-@app.route("/", methods = ["GET","POST"])
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
+
+@app.route("/login", methods = ["GET","POST"])
 def login():
     if request.method == POST:
         username = request.form["LoginAwwieU"]
@@ -44,3 +50,6 @@ def login():
         else:
             flash("Invalid Credentials")
     return render_template("login.html")
+
+
+@app.route("/")

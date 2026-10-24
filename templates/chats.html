@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chats - Awwiechat</title>
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+</head>
+<body>
+    <!--Username-->
+    <h1>{{ user.username }}</h1>
+
+    <!--Message will show here-->
+
+
+    <!--Form to send message -->
+    <form>
+        <input type = "text" id = "message" placeholder="Write your message">
+
+        <button onclick="sendMessage()">Send</button>
+    </form>
+
+    <!---Scripting for SocketIO-->
+
+    <script>
+        const socket = io();
+
+        function sendMessage(){
+            const input = document.getElementById("message");
+            const text = input.value.trim();
+
+            if (text === "") return;
+            socket.emit("send_message",text);
+            input.value = "";
+        }
+
+        socket.on("receive_message", function(data) {
+            const messages = document.getElementById("messages");
+
+            const p = document.createElement("p");
+            p.textContent = data.username + ": " + data.message;
+
+            messages.appendChild(p);
+        });
+    </script>
+</body>
+</html>
