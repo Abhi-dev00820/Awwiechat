@@ -20,12 +20,12 @@
 
         <input type="submit" value = "SignUp">
 
-        <h3> Already a user ?? <a href = "{{url_for('login')}}">Signup</a></h3>
+        <h3> Already a user ?? <a href = "{{url_for('login')}}">LogIn</a></h3>
 
         <!--Flashed message to show on frontend-->
 
-        {% with message = get flashed message() %}
-        {% for message in messages%}
+        {% with message = get_flashed_messages() %}
+        {% for message in messages %}
 
         <p> {{ message }}</p>
 
